@@ -1,0 +1,39 @@
+<%- include('../partials/header'); %> 
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Welcome To YelpCamp!</h1>
+            <p>
+                View our handpicked campgrounds from all over the U.S. Read and comment about your favorite campground. 
+                Join the campground community by signing up today.
+            </p>
+            <p>
+                <a class="btn btn-primary btn-large" href="/campgrounds/new">Add New Campground</a>
+            </p>
+        </div>
+    </header>
+
+    <!-- image grid -->
+    <div class="container">
+        <div class="row" >
+            <% campgrounds.forEach((campground) => { %>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="card text-center mb-3">
+                        <img class="img-fluid img-thumbnail" src="<%= campground.image %> " alt="">
+                        <div class="caption">
+                            <h4><%= campground.name %> </h4>
+                        </div>
+                        <p>
+                            <a class="btn btn-dark btn-sm" href="/campgrounds/<%= campground._id %> ">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+
+</div> <!-- container div-->
+
+<%- include('../partials/footer'); %> 

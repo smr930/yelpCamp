@@ -1,0 +1,100 @@
+<%- include('../partials/header'); %> 
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 py-2">
+            <p class="lead">Camp Info</p>
+            <div class="list-group">
+                <li class="list-group-item list-group-item"><span class="camp-info-left">
+                    Price: </span>$<%= campground.price%>
+                </li>
+                <li class="list-group-item list-group-item"><span class="camp-info-left">
+                    Address: </span><%= campground.address%>
+                </li>
+                <li class="list-group-item list-group-item"><span class="camp-info-left">
+                    Phone: </span><%= helper.addDashes(campground.phone)%>
+                </li>
+            </div>           
+        </div>
+        
+        <div class="col-md-9">
+            <div class="thumnail">
+                <img class="img-fluid rounded" src=<%= campground.image %> "" alt="Camp Image">
+                <div class="caption-full">
+                    <h4 id="campground-name"><%= campground.name %></h4>
+                    <p><%= campground.desc %> </p>
+                    <p>
+                        <em id="submit-by">Submitted by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
+                    </p>
+                    <% if(currentUser && campground.author.id.equals(currentUser._id)){ %> 
+                    <a class="btn btn-sm btn-outline-warning my-1" href="/campgrounds/<%= campground._id %>/edit">Edit Campground</a>
+                    
+                    <!-- delete confirmation dialog box - bootstrap modal -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                        Delete Campground
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Warning</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this campground?
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
+                                <form id="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-sm btn-danger">Delete Campground</button> 
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %> 
+
+                    <!-- add a comment -->
+                    <p id="comment-btn">
+                        <a class="btn btn-sm btn-outline-success" href="/campgrounds/<%= campground._id %>/comments/new">Add Comment</a>
+                    </p>
+                    <!-- show comments -->
+                    <% if(campground.comments.length > 0) {%> 
+                    <div class="comments rounded">
+                    <% campground.comments.forEach((comment) => { %> 
+                            <p>
+                                <strong><%= comment.author.username %></strong>:
+                                <div class="btn-group edit-del-comment">
+                                    <!-- hide/show buttons if user is logged in and created the comment -->
+                                    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %> 
+                                        <!-- edit button -->
+                                        <a class="btn btn-xs btn-outline-none" title="Edit Comment" 
+                                            href="/campgrounds/<%= campground._id %>/comments/<%= comment._id%>/edit">
+                                            <img src="https://img.icons8.com/dotty/80/000000/edit.png"/>
+                                        </a>
+                                        <!-- delete button -->
+                                        <form id="delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+                                            <button class="btn btn-xs btn-outline-none" title="Delete Comment"><img src="https://img.icons8.com/dotty/80/000000/delete-forever.png"/></button>
+                                        </form>
+                                        <% } %> 
+                                        </div>
+                                
+                                <p><%= comment.text %></p>
+                                <span class="comment-time">(<%= moment(comment.createdAt).fromNow() %>)</span>
+                            </p>
+                                <hr>
+                        <% }) %> 
+                    </div>
+                    <% } %> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<%- include('../partials/footer'); %> 
