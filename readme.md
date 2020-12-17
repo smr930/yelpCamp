@@ -1,16 +1,16 @@
-# **YelpCamp**
+# **YelpCamp** [(Live Demo)](https://infinite-hamlet-12958.herokuapp.com/)
 
 <table>
   <tr style="padding: 0">
-    <td style="padding-right:5px"  width="59%"><img src="public/showcase/1-landing.jpg"><h3>Landing Page</h3></td>
-    <td style="padding-right:5px" width="50%"><img src="public/showcase/2-index.jpg"><h3>Index Page</h3></td>
+    <td style="padding-right:5px"  width="59%"><img src="public/showcase/1-landing.jpg"><h4>Landing Page</h4></td>
+    <td style="padding-right:5px" width="50%"><img src="public/showcase/2-index.jpg"><h4>Index Page</h4></td>
 </table>
 
 <table>
   </tr>
     <tr style="padding: 0">
-    <td style="padding-right:5px" width="60%"><img src="public/showcase/3-show-page.jpg"><h3>Show Page</h3></td>
-    <td style="padding-right:5px" width="20%"><img src="public/showcase/4-show-page-mobile.jpg"><h3>Show Page on Mobile</h3></td>
+    <td style="padding-right:5px" width="60%"><img src="public/showcase/3-show-page.jpg"><h4>Show Page</h4></td>
+    <td style="padding-right:5px" width="20%"><img src="public/showcase/4-show-page-mobile.jpg"><h4>Show Page on Mobile</h4></td>
   </tr>
 </table>
 
@@ -39,7 +39,10 @@
 ---
 
 ## version 3
-    remove YC and seed new YC, show comments, seperate campgrounds schema, introduce module.exports
+    remove YC and seed new YC, 
+    show comments, 
+    seperate campgrounds schema, 
+    introduce module.exports
 
 ## version 4
     moved index, new, show .ejs to views/campgrounds/
@@ -63,7 +66,7 @@
     refactored routes (seperate files)
     app.use("/campgrounds", campgroundRoutes);
     replaced "/campground" -> "/" in campgrounds.js
-    added mergeParams  to router = express.Router({mergeParams: true});
+    added mergeParams to router = express.Router({mergeParams: true});
     created readme.md file
 
 ## version 8
@@ -102,5 +105,5 @@
 ## version 12
     eliminated the use of var
     changed regular js functions to es6 arrow functions
-    
+    deployed to heroku
 
