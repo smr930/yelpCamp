@@ -30,10 +30,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-const mongoUrlLocal = "mongodb://localhost/yelp_camp";
-const mongoUrlCloud = "mongodb+srv://srAdmin:test1234@cluster0.lmdpo.mongodb.net/yelpcamp?retryWrites=true&w=majority";
-
-mongoose.connect(mongoUrlCloud, {
+mongoose.connect(process.env.DATABASEURL, {
   useUnifiedTopology: true, 
   useNewUrlParser: true,
   useFindAndModify: false
